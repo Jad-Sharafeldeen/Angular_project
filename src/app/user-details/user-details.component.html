@@ -1,0 +1,11 @@
+<div *ngIf="user">
+    <button mat-button (click)="goBack()">Back</button>
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title>{{ user.first_name }} {{ user.last_name }}</mat-card-title>
+            <mat-card-subtitle>ID: {{ user.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="user.avatar" alt="User Image">
+    </mat-card>
+</div>

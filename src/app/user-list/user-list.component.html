@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <span>User List</span>
+    <div class="search-box">
+        <mat-form-field appearance="fill">
+            <mat-label>Search by ID</mat-label>
+            <input matInput #userIdInput (keyup.enter)="searchUserById(userIdInput.value)" placeholder="Enter user ID">
+        </mat-form-field>
+    </div>
+</mat-toolbar>
+
+<div class="user-list-container" fxLayout="row wrap" fxLayoutAlign="center">
+    <mat-card *ngFor="let user of users" (click)="viewUserDetails(user.id)">
+        <mat-card-header>
+            <div mat-card-avatar class="avatar"></div>
+            <mat-card-title>{{ user.first_name }} {{ user.last_name }}</mat-card-title>
+            <mat-card-subtitle>ID: {{ user.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="user.avatar" alt="User Image">
+    </mat-card>
+</div>
+
+<mat-paginator [pageSize]="pageSize" [length]="totalUsers" (page)="onPageChange($event)"></mat-paginator>
+
+<mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
